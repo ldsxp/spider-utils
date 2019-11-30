@@ -4,7 +4,7 @@ import sys
 from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '0.0.4'
+version = '0.0.5'
 
 """
 pip install -U spider-utils
@@ -80,6 +80,7 @@ setup(
     install_requires=[
         'requests',
         'fake_useragent',
+        'tqdm',
     ],
     data_files=[('', ['spider_utils/data/fake_useragent_0.1.11.json', 'spider_utils/data/mobile_user_agents.txt', ])],
     extras_require={'dev': ['wheel', 'twine', ]},

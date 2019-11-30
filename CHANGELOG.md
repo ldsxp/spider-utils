@@ -4,6 +4,12 @@
 
 此项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.0.5] - 2019-11-30
+### Added
+- download_progress，下载文件，支持下载续传和进度条
+### Changed
+- download_file 改为 download（下载文件，支持下载续传），
+
 ## [0.0.4] - 2019-11-30
 ### Added
 - get_user_agent，随机获取 User Agent

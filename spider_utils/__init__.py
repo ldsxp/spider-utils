@@ -13,7 +13,10 @@ from .utils import (  # noqa
     get_cookie_dict,
 )
 
-from .download import download_file  # noqa
+from .download import (  # noqa
+    download,
+    download_progress,
+)
 
 from .spider import (  # noqa
     get_response,
