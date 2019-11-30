@@ -20,3 +20,5 @@ from .spider import (  # noqa
     requests_retry_session,
     get_response_to_file,
 )
+
+from .useragent import get_user_agent  # noqa

@@ -4,7 +4,7 @@ import sys
 from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '0.0.3'
+version = '0.0.4'
 
 """
 pip install -U spider-utils
@@ -14,6 +14,7 @@ pip --no-cache-dir install -U spider-utils
 # twine check dist/*
 
 echo 使用 twine 上传到官方的pip服务器:
+echo 在系统添加 TWINE_USERNAME 和 TWINE_PASSWORD 变量，不用输入用户名和密码
 rmdir /S/Q build
 rmdir /S/Q dist
 python setup.py sdist bdist_wheel
@@ -30,6 +31,7 @@ if sys.argv[-1] == 'up':
     os.system('rmdir /S/Q build')
     os.system('rmdir /S/Q dist')
     os.system('python setup.py sdist bdist_wheel')
+    os.system('twine check dist/*')
     os.system('twine upload dist/*')
     sys.exit()
 
@@ -77,7 +79,9 @@ setup(
     # 需要安装的依赖包
     install_requires=[
         'requests',
+        'fake_useragent',
     ],
+    data_files=[('', ['spider_utils/data/fake_useragent_0.1.11.json', 'spider_utils/data/mobile_user_agents.txt', ])],
     extras_require={'dev': ['wheel', 'twine', ]},
     python_requires='>=3.6',
 

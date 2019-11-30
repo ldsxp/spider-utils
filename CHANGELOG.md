@@ -4,16 +4,16 @@
 
 此项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.0.4] - 2019-11-30
+### Added
+- get_user_agent，随机获取 User Agent
+
 ## [0.0.1] - 2019-11-30
 **初始版本**
-
 ### Added
-
 - 无
-
 ### Changed
 - 无
-
 ### Fixed
 - 无
 
