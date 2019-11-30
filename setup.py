@@ -4,7 +4,7 @@ import sys
 from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '0.0.2'
+version = '0.0.3'
 
 """
 pip install -U spider-utils
@@ -33,11 +33,8 @@ if sys.argv[-1] == 'up':
     os.system('twine upload dist/*')
     sys.exit()
 
-
-# 读取 README.md 文件内容，转换为 reStructuredText
-def md2rst(f):
-    return convert(f, 'rst')
-
+with open('README.md', 'r', encoding='utf-8') as fh:
+    long_description = fh.read()
 
 setup(
     # 名称
@@ -48,9 +45,10 @@ setup(
     # 关键字列表
     keywords=("spider", "utils"),
     # 简单描述
-    description="常用模块的集合，为了多平台，多电脑调用方便!",
+    description="常用爬虫模块的集合，为了多平台，多电脑调用方便!",
     # 详细描述
-    long_description=md2rst('README.md'),
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     # 授权信息
     license="GNU GPL 3",
 
@@ -80,7 +78,8 @@ setup(
     install_requires=[
         'requests',
     ],
-    extras_require={'dev': ['wheel', 'twine', 'pypandoc', ]},
+    extras_require={'dev': ['wheel', 'twine', ]},
+    python_requires='>=3.6',
 
     zip_safe=False
 )
