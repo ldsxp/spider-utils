@@ -7,6 +7,10 @@ str2 = parse.quote(str1)  # url 编码
 str3 = parse.unquote(str2)  # url 解码
 """
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 from .utils import (  # noqa
     random_sleep,
     url_to_dict,

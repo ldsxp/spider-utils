@@ -3,12 +3,14 @@ version = '0.0.2'
 import os
 import random
 
+from . import BASE_DIR
+
 from fake_useragent import UserAgent
 
 # fake-useragent fake_useragent.json 下载： https://fake-useragent.herokuapp.com/browsers/0.1.11
-ua = UserAgent(path=os.path.join('data', 'fake_useragent_0.1.11.json'))
+ua = UserAgent(path=os.path.join(BASE_DIR, 'data', 'fake_useragent_0.1.11.json'))
 
-with open(os.path.join('data', 'mobile_user_agents.txt')) as f:
+with open(os.path.join(BASE_DIR, 'data', 'mobile_user_agents.txt')) as f:
     mobile_user_agents = [i.strip() for i in f.readlines()]
 
 
