@@ -13,3 +13,4 @@ build/
 dist/
 # emacs backup files
 *~
+*.log
