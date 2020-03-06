@@ -25,6 +25,8 @@ twine upload dist/*
 
 # twine upload dist/* 使用 twine 上传
 # 添加上传到 PyPI 的命令
+# 设置 TWINE_USERNAME=lds 和 TWINE_PASSWORD 变量，但不建议设置到系统里面
+# 勾选：Emulate terminal in output console(在输出控制台中模拟终端)
 if sys.argv[-1] == 'up':
     # os.system('rm -rf dist')
     # os.system('rm -rf build')
