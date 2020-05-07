@@ -48,6 +48,16 @@ def download_progress(url, dst, resume=True, **kwargs):
     """
     下载文件，支持下载续传和进度条
 
+    例子：
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"
+    }
+    proxies = {
+        "http": "http://127.0.0.1:1080",
+        "https": "http://127.0.0.1:1080",
+    }
+    download_progress(url, dst, resume=True, headers=headers, proxies=proxies)
+
     :param url: 下载文件的网址
     :param dst: 文件的保存路径
     :param resume: 是否需要下载续传
