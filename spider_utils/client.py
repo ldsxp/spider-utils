@@ -4,7 +4,7 @@ import json
 
 import requests
 import requests.adapters
-import requests.packages.urllib3 as urllib3
+import urllib3
 from requests.exceptions import ConnectTimeout, ConnectionError, ProxyError
 from loguru import logger
 from spider_utils.utils import random_sleep
