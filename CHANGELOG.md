@@ -4,6 +4,10 @@
 
 此项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.0.10] - 2020-06-15
+### Added
+- spider.BaseSpider，基础爬虫类，方便用来开发自定义的爬虫
+
 ## [0.0.9] - 2020-01-18
 ### Added
 - client.BaseSpiderClient，基础爬虫客户端，封装了常用操作
