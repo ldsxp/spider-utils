@@ -4,7 +4,7 @@ import sys
 # from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '0.0.10'
+version = '2022.5.29'
 
 """
 pip install -U spider-utils
@@ -80,12 +80,12 @@ setup(
     ],
     # 需要安装的依赖包
     install_requires=[
-        'requests==2.25.1',
+        'requests>=2.27.1',
         'fake_useragent==0.1.11',
-        'tqdm==4.61.1',
-        'loguru==0.5.3',
-        'beautifulsoup4==4.9.3',
-        'html2text==2020.1.16',
+        'tqdm>=4.64.0',
+        'loguru>=0.6.0',
+        'beautifulsoup4>=4.11.1',
+        'html2text>=2020.1.16',
     ],
     # data_files=[('', ['spider_utils/data/fake_useragent_0.1.11.json', 'spider_utils/data/mobile_user_agents.txt', ])],
     include_package_data=True,
