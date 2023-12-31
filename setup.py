@@ -4,7 +4,7 @@ import sys
 # from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '2023.7.25'
+version = '2023.12.31'
 
 """
 pip install -U spider-utils

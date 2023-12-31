@@ -172,7 +172,7 @@ class BaseSpiderClient:
 
         file_size = os.path.getsize(dst)
         # 检查文件大小判断是否下载成功
-        if file_size >= int(req.headers['content-length']):
+        if file_size >= int(req.headers.get('content-length', 0)):
             return file_size
         else:
             os.remove(dst)

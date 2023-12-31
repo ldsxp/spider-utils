@@ -4,6 +4,10 @@
 
 此项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [2023.12.31] - 2023-12-31
+### Changed
+- download 的时候忽略没有大小信息的情况
+
 ## [2023.7.25] - 2023-07-25
 ### Changed
 - 更新 fake_useragent 依赖为 1.1.3 以上
