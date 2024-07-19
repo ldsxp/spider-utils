@@ -4,7 +4,7 @@ import sys
 # from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '2023.12.31-2'
+version = '1.0.0'
 
 """
 pip install -U spider-utils
@@ -15,12 +15,12 @@ pip --no-cache-dir install -U spider-utils
 
 echo 使用 twine 上传到官方的pip服务器:
 echo 在系统添加 TWINE_USERNAME 和 TWINE_PASSWORD 变量，不用输入用户名和密码
+echo 例如 TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-AgEIcHlwaS5vcmcCJD...
 rmdir /S/Q build
 rmdir /S/Q dist
 python setup.py sdist bdist_wheel
 echo 上传到PyPI:
 twine upload dist/*
-
 """
 
 # twine upload dist/* 使用 twine 上传
