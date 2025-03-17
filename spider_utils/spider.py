@@ -194,7 +194,7 @@ class BaseSpider(BaseSpiderClient):
 
         return infos
 
-    def crawl_list_page(self, content):
+    def process_list_page(self, content):
         """
         采集详情页
         """
@@ -202,7 +202,7 @@ class BaseSpider(BaseSpiderClient):
         for data in data_list:
             yield data
 
-    def craw(self, overlay_file=False, max_exist=3):
+    def crawl(self, overlay_file=False, max_exist=3):
         """
         爬取内容
 
@@ -226,7 +226,7 @@ class BaseSpider(BaseSpiderClient):
                 try:
                     r = self.get(page.url)
                     f.write(r.content)
-                    for data in self.crawl_list_page(r.content):
+                    for data in self.process_list_page(r.content):
                         yield data
                 except Exception as e:
                     logger.warning(f'错误:{e}')
