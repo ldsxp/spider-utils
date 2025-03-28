@@ -4,7 +4,7 @@ import sys
 # from pypandoc import convert
 from setuptools import setup, find_packages
 
-version = '1.0.3'
+version = '1.0.4'
 
 """
 pip install -U spider-utils

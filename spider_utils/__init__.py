@@ -28,4 +28,4 @@ from .spider import (  # noqa
     get_response_to_file,
 )
 
-from .useragent import get_user_agent  # noqa
+# from .useragent import get_user_agent  # noqa
