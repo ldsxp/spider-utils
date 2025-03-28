@@ -6,22 +6,22 @@ import requests
 import requests.adapters
 import urllib3
 from requests.exceptions import ConnectTimeout, ConnectionError, ProxyError
-from loguru import logger
+# from loguru import logger
 from spider_utils.utils import random_sleep
 
-config = {
-    "handlers": [
-        {
-            "sink": sys.stdout, 'colorize': True,
-            # "format": "<green>{time:MM-DD HH:mm:ss}</green> <blue>{level}</blue> {message}",
-        },
-        {
-            "sink": "logs/spider.log", "serialize": True, 'enqueue': True, "encoding": "utf-8"
-        },
-    ],
-    "extra": {"logger": "spider"},
-}
-logger.configure(**config)
+# config = {
+#     "handlers": [
+#         {
+#             "sink": sys.stdout, 'colorize': True,
+#             # "format": "<green>{time:MM-DD HH:mm:ss}</green> <blue>{level}</blue> {message}",
+#         },
+#         {
+#             "sink": "logs/spider.log", "serialize": True, 'enqueue': True, "encoding": "utf-8"
+#         },
+#     ],
+#     "extra": {"logger": "spider"},
+# }
+# logger.configure(**config)
 
 RETRY = requests.adapters.Retry(
     total=3,  # 允许的重试总次数，优先于其他计数
@@ -42,7 +42,7 @@ def dict_to_pretty_string_py(the_dict):
 
 
 class BaseSpiderClient:
-    def __init__(self, retry=None, retries=None):
+    def __init__(self, retry=None, retries=None, log_function=print, wx_thread=None, debug=False):
         """
         爬虫客户端，这是获取所有类的入口。
 
@@ -61,6 +61,12 @@ class BaseSpiderClient:
         self.params = {}
         self.parse_data = {}
         self.load_count = 0
+
+        self.log_function = log_function
+        self.wx_thread = wx_thread
+        self.debug = debug
+        self.infos = []
+        self.errors = []
 
         # 删除SSL验证
         self._session.verify = False
@@ -181,14 +187,14 @@ class BaseSpiderClient:
 
         self.parse_data = {}
         self.load_count += 1
-        logger.info(f'[{self.load_count:05}] Starting {url}')
+        self.log_function(f'[{self.load_count:05}] Starting {url}')
 
         for i in range(self.retries):
             try:
                 r = self.get(url, **kwargs)
                 random_sleep()
             except (ConnectTimeout, ConnectionError) as e:
-                logger.warning(str(e))
+                self.errors.append(str(e))
             else:
                 return r
 
@@ -245,7 +251,7 @@ def test():
     print('set_params', response.text)
 
     print(s)
-    logger.info(s)
+    # logger.info(s)
 
 
 if __name__ == '__main__':
