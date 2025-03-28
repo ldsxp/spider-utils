@@ -10,7 +10,7 @@ from requests.exceptions import RequestException
 import html2text
 from bs4 import BeautifulSoup
 
-from .client import BaseSpiderClient, logger
+from .client import BaseSpiderClient  # , logger
 
 PageContext = namedtuple('PageContext', ['name', 'page', 'url', ])
 
@@ -109,6 +109,7 @@ def get_response_to_file(url, file_name=None, params=None, **kwargs):
 class BaseSpider(BaseSpiderClient):
 
     def __init__(self, base_url, start_page=1, page_max=100, name='', save_dir=Path('cache'), is_update=False,
+                 log_function=print, wx_thread=None, debug=False,
                  retry=None,
                  retries=None):
         super().__init__(retry, retries)
@@ -120,6 +121,12 @@ class BaseSpider(BaseSpiderClient):
         self.start_page = start_page
         self.page_max = page_max
         self.is_update = is_update
+
+        self.log_function = log_function
+        self.wx_thread = wx_thread
+        self.debug = debug
+        self.infos = []
+        self.errors = []
 
         text_maker = html2text.HTML2Text()
         text_maker.body_width = 0
@@ -219,7 +226,7 @@ class BaseSpider(BaseSpiderClient):
         i = 1
         for page in self.get_urls():
             file = self.save_dir / f'{datetime.now().strftime("%Y-%m-%d %H.%M.%S")} {page.page:05}.html'
-            print(page.url, file)
+            self.log_function(page.url, file)
             if file.exists() and not overlay_file:
                 continue
             with open(file, 'wb') as f:
@@ -229,7 +236,8 @@ class BaseSpider(BaseSpiderClient):
                     for data in self.process_list_page(r.content):
                         yield data
                 except Exception as e:
-                    logger.warning(f'错误:{e}')
+                    self.log_function(f'错误:{e}')
+                    self.errors.append(f'错误:{e}')
             i += 1
             # random_sleep()
             if exist_count >= max_exist:

@@ -4,6 +4,10 @@
 
 此项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.3]
+### Changed
+- 不使用 logger，她在GUI中会给我们造成困扰，如果有需要请自行添加
+
 ## [1.0.2]
 ### Changed
 - 不使用 logger，她在GUI中会给我们造成困扰，如果有需要请自行添加
